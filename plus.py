@@ -1,5 +1,11 @@
 import sys
 
+SECRET_KEY=supersecretkey
+KEY=123456
+PASSWORD=12345678
+PASS=1234
+
+
 def plus(a : int, b : int) -> int:
     assert isinstance(a, int), "a must be an integer"
     assert isinstance(b, int), "b must be an integer"
