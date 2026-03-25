@@ -40,7 +40,7 @@ jobs:
       uses: SonarSource/sonarcloud-github-action@v2
       with:
         args: >
-          -Dsonar.projectKey=iec_aula_02
-          -Dsonar.organization=Vinne
+          -Dsonar.projectKey=Vinicius-Martines-01_iec_aula_02
+          -Dsonar.organization=Vinicius-Martines-01
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
