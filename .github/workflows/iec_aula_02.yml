@@ -41,6 +41,6 @@ jobs:
       with:
         args: >
           -Dsonar.projectKey=Vinicius-Martines-01_iec_aula_02
-          -Dsonar.organization=Vinicius-Martines-01
+          -Dsonar.organization=vinicius-martines-01
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
