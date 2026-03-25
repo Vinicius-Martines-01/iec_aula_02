@@ -19,7 +19,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install pytest
       - name: Run tests
-        # O '|| true' evita que o workflow pare se a pasta tests/ ainda não existir
         run: pytest tests/ || echo "Pasta de testes não encontrada, pulando..."
 
   test:
@@ -28,19 +27,33 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Testar o código manualmente
-        # Garanta que o arquivo plus.py existe na raiz do projeto
         run: python plus.py 10 15
 
-  deploy:
+  quality:
     runs-on: ubuntu-latest
     needs: test
     if: github.ref == 'refs/heads/main'
     steps:
-    - name: Análise com SonarCloud
-      uses: SonarSource/sonarcloud-github-action@v2
-      with:
-        args: >
-          -Dsonar.projectKey=Vinicius-Martines-01_iec_aula_02
-          -Dsonar.organization=vinicius-martines-01
-      env:
-        SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Análise com SonarCloud
+        uses: SonarSource/sonarcloud-github-action@v2
+        with:
+          args: >
+            -Dsonar.projectKey=Vinicius-Martines-01_iec_aula_02
+            -Dsonar.organization=vinicius-martines-01
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+
+  security:
+    runs-on: ubuntu-latest
+    needs: quality
+    steps:
+      - name: Scan for secrets
+        uses: gitleaks/gitleaks-actions@v2
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: security
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Deploy to Server
+        run: echo "Executar deploy"

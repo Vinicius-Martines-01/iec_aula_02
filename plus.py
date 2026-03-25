@@ -16,6 +16,7 @@ if __name__ == "__main__":
         print("É necessário fornecer dois números inteiros como argumentos.")
         sys.exit(1)
     
+    password = "12345678"
     a = int(sys.argv[1])
     b = int(sys.argv[2])
     c = 0
