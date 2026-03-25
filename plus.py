@@ -3,7 +3,7 @@ import sys
 def plus(a : int, b : int) -> int:
     assert isinstance(a, int), "a must be an integer"
     assert isinstance(b, int), "b must be an integer"
-    eval("print("Teste")")
+    print("Teste")
     return a + b
 
 def plus2(a : int, b : int) -> int:
