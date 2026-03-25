@@ -48,7 +48,7 @@ jobs:
     needs: quality
     steps:
       - name: Scan for secrets
-        uses: gitleaks/gitleaks-actions@v2
+        uses: gitleaks/gitleaks-action@v2
 
   deploy:
     runs-on: ubuntu-latest
